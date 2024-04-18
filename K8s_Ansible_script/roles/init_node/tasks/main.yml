@@ -87,9 +87,8 @@
 
 
 - name: Add Kubernetes repository into sources list
-  ansible.builtin.apt_repository:
-    repo: deb [signed-by=/etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /
-    state: present
+  ansible.builtin.shell:
+    cmd: "echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list"
     
     
 - name: install and update packages
